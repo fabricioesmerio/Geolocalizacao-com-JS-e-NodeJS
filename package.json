@@ -1,0 +1,24 @@
+{
+  "name": "geo-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabricioesmerio/Geolocalizacao-com-JS-e-NodeJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabricioesmerio/Geolocalizacao-com-JS-e-NodeJS/issues"
+  },
+  "homepage": "https://github.com/fabricioesmerio/Geolocalizacao-com-JS-e-NodeJS#readme",
+  "dependencies": {
+    "knex": "^0.15.1",
+    "mysql": "^2.15.0",
+    "restify": "^7.2.1"
+  }
+}
