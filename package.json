@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/fabricioesmerio/Geolocalizacao-com-JS-e-NodeJS#readme",
   "dependencies": {
+    "@google/maps": "^0.5.4",
+    "axios": "^0.18.0",
     "knex": "^0.15.1",
     "mysql": "^2.15.0",
     "restify": "^7.2.1"
