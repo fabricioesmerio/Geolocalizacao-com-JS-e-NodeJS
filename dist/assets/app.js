@@ -1,1 +1,82 @@
-console.log('teste ok, carregou!');
+window.onload = () => {
+    let grid = document.querySelector('#grid');
+    let button = document.querySelector('#send');
+
+    button.addEventListener("click", save);
+
+
+    read();
+}
+
+function templateCard(address, image){
+    return `
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <img src="${image}"
+                    alt="">
+            </div>
+            <div class="mdl-card__supporting-text">
+                ${address}
+            </div>
+
+
+    </div>
+    `;
+}
+
+function read(){
+    axios
+    .get("/all")
+    .then(response => {
+        response.data.forEach(element => {
+            let card = templateCard(element.address, element.image);
+            grid.innerHTML += card;
+        });
+    })
+    .catch(error => {
+        
+    });
+    
+}
+
+function save(){
+    if(!navigator.geolocation){
+        alert("Seu navegador não suporta essa funcionalidade!");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(sucess, error, {
+        enableHighAccuracy: true
+    });
+
+    function sucess(position){
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+
+        /*caso houver sucesso ao receber a latitude e a longitude
+        chamamos o spinner para mostrar que estamos trabalando.
+        */
+        const spinner = document.querySelector("#spinner");
+        spinner.classList.add("is-active");
+
+        axios
+        .post("/geocode", {lat, lng})
+        .then(function(response) {
+            let card = templateCard(response.data.address, response.data.image);
+            grid.innerHTML += card;
+
+            /*
+            depois que adicionamos nosso card, removemos o spinner*/
+            spinner.classList.remove("is-active");
+        })
+        .catch(function(error){
+            /*
+            caso haja algum erro, removemos o spinner também.*/
+            spinner.classList.remove("is-active");
+        });
+    }
+
+    function error(err){
+        alert(err);
+    }
+}
