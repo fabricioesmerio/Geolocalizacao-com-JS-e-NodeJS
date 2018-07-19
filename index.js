@@ -1,7 +1,7 @@
 const restify = require("restify");
 
 const googleMapsClient = require('@google/maps').createClient({
-    key: 'AIzaSyAsH77shal_ixB1_-o7FkKs8Hx8SCArPwo',
+    key: 'sua chave',
     Promise: Promise
 });
 
